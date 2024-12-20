@@ -38,10 +38,10 @@ static void showCommands();
 static void showBatteryLevel(CHiP* pCHiP);
 static void count_numbers(CHiP* pCHiP);
 static void bingo_lullaby(CHiP* pCHiP);
+static void jingleBells(CHiP* pCHiP);
+static void twinkle(CHiP* pCHiP);
 
-
-
-int main(int argc, char *argv[])
+  int main(int argc, char *argv[])
 {
   // Initialize the Core Bluetooth stack on this the main thread and start the worker robot thread to run the
   // code found in robotMain() below.
@@ -160,6 +160,12 @@ void robotMain(void)
 	case '1':
 	  bingo_lullaby(pCHiP);
 	  break;
+	case '2':
+	  jingleBells(pCHiP);
+	  break;
+	case '3':
+	  twinkle(pCHiP);
+	  break;
         case '?':
 	  showBatteryLevel(pCHiP);
 	  break;
@@ -195,6 +201,7 @@ static void showCommands()
   printw("S - Sit Down         L - Lie Down    R - Reset Pose    B - Bark\n");
   printw("Y - Yoga         D - Dance    J - Jump\n");
   printw("c - count 1:10         1 -  BINGO lullaby\n");
+  printw("2 - Jingle bell        3 -  twinkle twinkle little star \n");
   printw("? - Battery Level    Q - Quit\n\n");
 }
 
@@ -323,3 +330,122 @@ static void count_numbers(CHiP* pCHiP)
   sleep(1);
   chipPlaySound(pCHiP, CHIP_SOUND_TEN_A34);
 };
+
+//play jingleBell  using simple do re mi
+static void jingleBells(CHiP* pCHiP)
+{
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  sleep(1);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  sleep(1);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_DO1_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  sleep(1);
+
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
+  sleep(1);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  sleep(1);
+
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  sleep(1);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
+  sleep(1);
+
+};
+
+//play twinkle twinkle little start  using simple do re mi
+static void twinkle(CHiP* pCHiP)
+{
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_DO1_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_DO1_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_LA_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_LA_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
+  sleep(1);
+
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_DO1_SHORT_A34);
+  sleep(1);
+
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  sleep(1);
+
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  sleep(1);
+};
+
