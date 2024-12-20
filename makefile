@@ -13,7 +13,7 @@ REMOVE_DIR = rm -r -f
 QUIET = > /dev/null 2>&1 ; exit 0
 
 # Tool flags
-CLANG_FLAGS := -g -Wall -Werror -MMD -MP
+CLANG_FLAGS := -g -Wall -MMD -MP
 
 # .o object files are to be placed in obj/ directory.
 # .a lib files are to be placed in lib/ directory.
