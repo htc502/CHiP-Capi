@@ -74,6 +74,7 @@ void robotMain(void)
     {
       DirectionCommand currDir = {0, 0, 0};
 
+      int maxSpeed = 6;
       int key = getch();
       switch (key)
         {
@@ -87,6 +88,8 @@ void robotMain(void)
             {
 	      currDir.forwardReverse = 32;
             }
+	  //set speed limit
+	  if (currDir.forwardReverse >= maxSpeed) currDir.forwardReverse = maxSpeed;
 	  break;
         case KEY_DOWN:
 	  currDir.forwardReverse = prevDir.forwardReverse - 1;
@@ -94,6 +97,7 @@ void robotMain(void)
             {
 	      currDir.forwardReverse = -32;
             }
+	  if (currDir.forwardReverse <= -maxSpeed)  currDir.forwardReverse = -maxSpeed;
 	  break;
         case KEY_LEFT:
 	  currDir.leftRight = prevDir.leftRight - 1;
@@ -101,6 +105,8 @@ void robotMain(void)
             {
 	      currDir.leftRight = -32;
             }
+	  //leftright needs higher motor speed,disable the check
+	  /* if(currDir.leftRight <= -maxSpeed) currDir.leftRight = -maxSpeed; */
 	  break;
         case KEY_RIGHT:
 	  currDir.leftRight = prevDir.leftRight + 1;
@@ -108,6 +114,7 @@ void robotMain(void)
             {
 	      currDir.leftRight = 32;
             }
+	  /* if(currDir.leftRight >= maxSpeed) currDir.leftRight = maxSpeed; */
 	  break;
         case 'a':
         case 'A':
@@ -116,6 +123,7 @@ void robotMain(void)
             {
 	      currDir.spin = -32;
             }
+	  if(currDir.spin >= maxSpeed) currDir.spin = maxSpeed;
 	  break;
         case 'f':
         case 'F':
@@ -124,6 +132,7 @@ void robotMain(void)
             {
 	      currDir.spin = 32;
             }
+	  if(currDir.spin <= -maxSpeed) currDir.spin = -maxSpeed;
 	  break;
         case 's':
         case 'S':
@@ -247,65 +256,84 @@ static void showBatteryLevel(CHiP* pCHiP)
 //play bingo lullaby using simple do re mi
 static void bingo_lullaby(CHiP* pCHiP)
 {
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
-  usleep(500000);
   chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
   usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_LA_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_TI_SHORT_A34);
-  sleep(1);
-
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_LA_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_TI_SHORT_A34);
-  sleep(1);
-
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_LA_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_TI_SHORT_A34);
-  sleep(1);
-
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_LA_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_TI_SHORT_A34);
-  sleep(1);
-
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
-  sleep(1);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
-  usleep(500000);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
-  sleep(1);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
-  sleep(1);
   chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_DO1_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_DO1_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
+  usleep(500000);
+chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_LA_SHORT_A34);
+  usleep(500000);
+chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_LA_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
   sleep(1);
+
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_DO1_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_DO1_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_DO1_SHORT_A34);
+  sleep(1);
+
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+    chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_FA_SHORT_A34);
+  sleep(1);
+
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  usleep(500000);
+    chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+  sleep(1);
+
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_DO1_SHORT_A34);
+  usleep(500000);
+    chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_DO1_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
+  usleep(500000);
   chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_RE_SHORT_A34);
   sleep(1);
-  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_MI_SHORT_A34);
+
+chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_DO1_SHORT_A34);
+  usleep(500000);
+    chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_TI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_SO_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_LA_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_TI_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_DO1_SHORT_A34);
+  usleep(500000);
+  chipPlaySound(pCHiP,CHIP_SOUND_CHIP_SING_DO1_SHORT_A34);
   sleep(1);
 };
 
